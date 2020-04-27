@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <div id="app">
+        <div id="messages">
+            <!-- <div id="message"><strong>Nome Aqui</strong><p>Mensagem que a pessoa enviou.</p></div> -->
+        </div>
+        <form >
+            <div id="message-box">
+                <div id="input-box">
+                    <input id="name-input" class='input-form' type="text" placeholder="Escreva seu nome.">
+                    <input id="message-input"  class='input-form' type="text" placeholder="Escreva sua mensagem.">
+                </div>
+                <button id="send-message" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+<!-- ############### JAVASCRIPT ############### -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script>
+            $(function () {
+                let chat = []
+
+                $('form').submit(function(e) {
+                    e.preventDefault()
+                    if ($('#name-input').val() && $('#message-input').val()) {
+                        socket.emit('chat-message', {
+                            name: $('#name-input').val(),
+                            message: $('#message-input').val()
+                        })  
+                    } 
+                        return false
+                })
+
+                socket.on('chat-message', (message)=>{
+                    $('#messages').append(`
+                        <div id="message">
+                            <strong>${message.name}</strong>
+                            <p>${message.message}</p>
+                        </div>`
+                    )
+                    $('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")})  
+                })
+            })
+            
+        var socket = io();
+        </script>
+
+<!-- ############### CSS STYLES ############### -->
+    <style>
+        * {
+    margin:  0 auto;
+    padding: 0 ;
+    border: 0;
+}
+
+body {
+    padding: 20px;
+}
+
+#app, #messages {
+    padding: 5px;
+    border: solid 1px #999;
+    border-radius: 4px;
+    max-width: 500px;
+    min-width: 325px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#messages {
+    height: 600px;
+    min-width: 310px;
+    display: flex;
+    flex-direction: column; 
+    overflow: auto;   
+}
+
+#message {
+    margin: 5px;
+}
+
+#message strong{
+    font-size: 13px;
+    color: rgb(10, 154, 190) ;
+    font-weight: bold;
+}
+
+#message p {
+    font-size: 15px;
+    padding: 0 0 0 10px;
+}
+
+#message-box {
+    padding: 8px 0px 0;
+    display: flex;
+    
+}
+
+#input-box {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    padding: 0 5px 0 0;
+}
+
+.input-form {
+    margin: 0;
+    height: 40px;
+    border: solid 1px #999;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+#send-message {
+    flex: 0.15fr;
+    width: 100px;
+    color: #ffffff;
+    background-color: rgb(10, 154, 190) ;            
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+
+    </style>
+</body>
+</html>

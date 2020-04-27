@@ -1,0 +1,66 @@
+* {
+    margin:  0 auto;
+    padding: 0 ;
+    border: 0;
+}
+
+body {
+    padding: 20px;
+}
+
+#app, #messages {
+    padding: 5px;
+    border: solid 1px #999;
+    border-radius: 4px;
+    max-width: 500px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#messages {
+    height: 600px;
+    display: flex;
+    flex-direction: column-reverse;    
+}
+
+#message {
+    margin: 5px;
+}
+
+#message strong{
+    font-size: 13px;
+    color: rgb(10, 154, 190) ;
+    font-weight: bold;
+}
+
+#message p {
+    font-size: 15px;
+    padding: 0 0 0 10px;
+}
+
+#message-box {
+    padding: 8px 0px 0;
+    display: flex;
+}
+
+#message-input {
+    height: 40px;
+    flex: auto;
+    border: solid 1px #999;
+    border-radius: 4px;
+    margin-right: 5px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+#send-message {
+    height: 40px;
+    width: 100px;
+    color: #ffffff;
+    padding: 0 10px;
+    background-color: rgb(10, 154, 190) ;            
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
