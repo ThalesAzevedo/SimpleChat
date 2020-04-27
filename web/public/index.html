@@ -20,6 +20,7 @@
             </div>
         </form>
     </div>
+
 <!-- ############### JAVASCRIPT ############### -->
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -78,11 +79,16 @@ body {
     min-width: 310px;
     display: flex;
     flex-direction: column; 
-    overflow: auto;   
+    overflow-y: auto;   
+    overflow-x: hidden;
 }
 
 #message {
+    padding: 5px;
+    border: solid 1px #999;
+    border-radius: 4px;
     margin: 5px;
+    max-width: 80%;
 }
 
 #message strong{

@@ -10,7 +10,8 @@ app.get('/', (request, response)=>{
 
 io.on('connection', (socket) => {
     console.log(`new connection -id: ${socket.id}`)
-    
+    io.emit('chat-message', {name:`${socket.id}`, message:'Alguém entrou na conversa.' })
+
     socket.on('chat-message', (message)=> {
         console.log(`${message.name} disse: ${message.message}`)
         io.emit('chat-message', message)
@@ -28,6 +29,6 @@ io.on('connection', (socket) => {
 })
 
 http.listen(3000, () => {
-    console.log('Server on - localost:3000')
+    console.log('Server on - localhost:3000')
 })
 
